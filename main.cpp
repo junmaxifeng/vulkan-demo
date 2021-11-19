@@ -2,6 +2,8 @@
 
 int main() {
     VulkanFrame app;
+    app.setWindowSize(800,600);
+    app.setWindowTitle("vulkan");
 
     try {
         app.run();

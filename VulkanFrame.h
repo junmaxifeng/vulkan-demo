@@ -17,13 +17,34 @@
 #include <set>
 #include <algorithm>
 #include <map>
+struct WindowSetting{
+    WindowSetting(){};
+    virtual ~WindowSetting(){};
+    uint mHeight;
+    uint mWidth;
+    std::string mTitle;
+};
 
 class VulkanFrame {
 public:
     void run();
+
+public:
+    void setWindowSize(const uint &width,const uint &height);
+    void setWindowTitle(const std::string &title);
 private:
+    void initWindow();
+    void initVulkan();
+    void mainLoop();
+    void cleanup();
 
 private:
+    bool checkValidationLayerSupport();
+    void createInstance();
+private:
+    VkInstance mInstance;
+    GLFWwindow *mWindow;
+    WindowSetting mWindowSetting;
 };
 
 #endif //VKDEMO_VulkanFrame_H
